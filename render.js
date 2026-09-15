@@ -171,6 +171,22 @@ export function drawSection(canvas, a, p, view, cam, focus) {
     ctx.fill();
   }
 
+  // --- step walls where the topping edge drops away ---
+  // Without these the extruded top band of a covered column and the much lower band of the
+  // bare rim next to it leave a floating fragment with background showing between them.
+  for (let i = i0; i < i1 - 1; i++) {
+    const hi = a[OFF_HEIGHT + i], lo = a[OFF_HEIGHT + i + 1];
+    if (hi - lo < 0.12) continue;
+    ctx.fillStyle = rgb(lerp(cellColor(a, i, NZ - 1, view, p), [0, 0, 0], 0.30));
+    ctx.beginPath();
+    ctx.moveTo(x(i + 1), yOf(hi));
+    ctx.lineTo(x(i + 1) + depthX, yOf(hi) + depthY);
+    ctx.lineTo(x(i + 1) + depthX, yOf(lo) + depthY);
+    ctx.lineTo(x(i + 1), yOf(lo));
+    ctx.closePath();
+    ctx.fill();
+  }
+
   // --- the cut face ---
   for (let i = i0; i < i1; i++) {
     const H = a[OFF_HEIGHT + i];
