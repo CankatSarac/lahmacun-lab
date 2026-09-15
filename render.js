@@ -85,7 +85,7 @@ function buildPores(p, start, end, doughAt) {
   }
 }
 
-function cellColor(a, i, j, view, p) {
+export function cellColor(a, i, j, view, p) {
   const c = j * NX + i;
   const T = a[OFF_T + c], W = a[OFF_W + c], S = a[OFF_S + c], G = a[OFF_G + c];
   const doughMm = a[OFF_DOUGH + i], H = a[OFF_HEIGHT + i];

@@ -4,6 +4,7 @@
 import { recipes, controls, ovens, surfaces, challenges, FIELDS } from './recipes.js';
 import { fields, legendGradient, varsayilanHiz } from './fields.js';
 import { drawSection } from './render.js';
+import { drawTop } from './render-top.js';
 import { attachCamera } from './camera.js';
 import {
   SUMMARY, S_FOLD, S_MEATCORE, S_WATERLOSS, S_BROWN, S_DONE, S_THICK,
@@ -128,6 +129,8 @@ function paintCanvas() {
   const a = frameAt(t);
   if (!a) return;
   drawSection($('#hamur-canvas'), a, p, view, camera.cam, focus);
+  // The top view reads the same frame, so the thumbnail can never contradict the section.
+  drawTop($('#ust-gorunum'), a, p);
 }
 
 function paint() {
