@@ -1,0 +1,12 @@
+{
+  "name": "lahmacun-lab",
+  "version": "1.0.0",
+  "description": "Lahmacun pisirme fizigi oyun alani",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "node --test test/",
+    "serve": "python3 -m http.server 8080"
+  },
+  "license": "MIT"
+}
