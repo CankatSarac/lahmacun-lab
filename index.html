@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#17120f">
+<meta name="description" content="Hamurun içine gir. On bir yöresel usul, sanal bir fırın ve tartışmaya değer deneyler. İnteraktif lahmacun pişirme fiziği.">
+<meta property="og:title" content="LAHMACUN LAB — Hamurun içine gir">
+<meta property="og:description" content="Isı, nem, kızarma ve katlanabilirlik: lahmacunun içinde ne olduğunu görün.">
+<title>LAHMACUN LAB — Hamurun içine gir</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%23d4552e'/><circle cx='16' cy='16' r='9' fill='%238d3a20'/></svg>">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <a class="brand" href="./"><span class="brandmark">◉</span> LAHMACUN LAB<span class="lab">HAMUR LABORATUVARI</span></a>
+  <nav>
+    <button id="rastgele" class="link">← Rastgele</button>
+    <button id="bilim">Bilim ↗</button>
+    <button id="paylas" class="outline">Deneyi paylaş ↗</button>
+  </nav>
+</header>
+
+<main>
+  <div class="intro">
+    <div>
+      <div class="eyebrow">BİRAZ URFA. BİRAZ TERMODİNAMİK.</div>
+      <h1>Hamurun içine gir<span>.</span></h1>
+      <p>Tarifi değiştir. Fırını yak. Her şeyi sorgula.</p>
+    </div>
+    <span class="badge">DENEYSEL MODEL <span>↗</span></span>
+  </div>
+
+  <div class="workspace">
+    <aside class="controls">
+      <div class="panel-title"><span>01 / HAMUR</span><button id="sifirla">Sıfırla ↺</button></div>
+      <label for="tarif">Başlangıç noktanız</label>
+      <select id="tarif"></select>
+
+      <div class="recipe-photo">
+        <svg viewBox="0 0 220 120" role="img" aria-label="Kenarları kızarmış, üzeri kıymalı harçla kaplı lahmacun">
+          <defs>
+            <radialGradient id="hamurG" cx="50%" cy="45%"><stop offset="0%" stop-color="#e8cf9a"/><stop offset="78%" stop-color="#d9b876"/><stop offset="100%" stop-color="#a97038"/></radialGradient>
+            <radialGradient id="harcG" cx="48%" cy="44%"><stop offset="0%" stop-color="#9c4430"/><stop offset="100%" stop-color="#6d2d20"/></radialGradient>
+          </defs>
+          <ellipse cx="110" cy="62" rx="94" ry="50" fill="url(#hamurG)"/>
+          <ellipse cx="110" cy="60" rx="82" ry="42" fill="url(#harcG)"/>
+          <g fill="#4a2018" opacity=".55"><circle cx="72" cy="48" r="3.1"/><circle cx="128" cy="44" r="2.4"/><circle cx="154" cy="70" r="3.4"/><circle cx="92" cy="80" r="2.7"/><circle cx="118" cy="68" r="2"/><circle cx="60" cy="70" r="2.2"/><circle cx="140" cy="56" r="1.8"/></g>
+          <g fill="#3f7a3a" opacity=".75"><circle cx="86" cy="58" r="2"/><circle cx="136" cy="78" r="1.7"/><circle cx="106" cy="46" r="1.5"/><circle cx="160" cy="54" r="1.6"/></g>
+          <g fill="#2a1410" opacity=".62"><ellipse cx="34" cy="58" rx="9" ry="5"/><ellipse cx="186" cy="66" rx="8" ry="4.5"/><ellipse cx="110" cy="107" rx="11" ry="4"/></g>
+        </svg>
+        <div><span id="yore">ŞANLIURFA</span><strong id="baslik">İsotun ve ateşin şehri.</strong></div>
+      </div>
+      <p class="small" id="tarif-aciklama"></p>
+
+      <div id="hamur-kontrol"></div>
+      <div class="control">
+        <label for="yuzey">Pişirme yüzeyi</label>
+        <select id="yuzey"></select>
+      </div>
+
+      <div class="panel-title firin-title">02 / İÇ HARÇ</div>
+      <div id="harc-kontrol"></div>
+      <p class="small muted">Kaplama, harcın kapladığı alanı belirler. Su, ağırlıkça ayrı bir yüzdedir.</p>
+
+      <div class="panel-title firin-title">03 / FIRIN</div>
+      <div class="firin-buttons" id="firin-buttons"></div>
+      <div id="firin-kontrol"></div>
+
+      <button class="primary" id="pisir">▶ &nbsp; Fırını yak</button>
+      <p class="small muted centered">Mutfağınız güvende. Varsayımlarınız değil.</p>
+    </aside>
+
+    <section class="stage">
+      <div class="stage-top">
+        <div>
+          <span class="eyebrow">CANLI HAMUR KESİTİ</span>
+          <h2 id="sahne-baslik">Şanlıurfa Lahmacunu <span>/ 01</span></h2>
+        </div>
+        <span id="motor" class="engine">Fizik motoru hazır</span>
+      </div>
+
+      <div class="view-buttons" role="group" aria-label="Görsel alan">
+        <button class="active" data-view="kesit">Kesit</button>
+        <button data-view="isi">Isı</button>
+        <button data-view="nem">Nem</button>
+        <button data-view="yapi">Yapı</button>
+      </div>
+
+      <div class="render-tools">
+        <span>2.304 ısı hücresi</span>
+        <button id="kenar-odak" aria-pressed="false">Kenarı incele</button>
+      </div>
+
+      <div class="camera-bar">
+        <div>
+          <button id="uzaklas" aria-label="Uzaklaştır">−</button>
+          <output id="zoom-seviye" aria-label="Kamera yakınlaştırma">%100</output>
+          <button id="yakinlas" aria-label="Yakınlaştır">+</button>
+        </div>
+        <button id="gorunum-sifirla">Görünümü sıfırla</button>
+      </div>
+      <p id="kamera-yardim">Döndürmek için sürükleyin · yakınlaştırmak için tekerlek veya iki parmak · taşımak için Shift ile sürükleyin.</p>
+
+      <div class="canvas-wrap">
+        <canvas id="hamur-canvas" tabindex="0" aria-describedby="kamera-yardim" role="img"
+          aria-label="Etkileşimli lahmacun kesiti. Yön tuşları döndürür, artı ve eksi yakınlaştırır, Home görünümü sıfırlar."></canvas>
+        <div class="canvas-label">MERKEZ <span>MERKEZDEN KENARA KESİT · DİKEY ÖLÇEK BÜYÜTÜLMÜŞ</span> KENAR</div>
+        <div id="alan-anahtar">Temsilî gözenekler · ortak tohum 42</div>
+      </div>
+
+      <section id="legend" hidden aria-label="Renk anahtarı">
+        <h3 id="legend-baslik"></h3>
+        <div id="legend-bar"></div>
+        <div id="legend-ticks"></div>
+        <p id="legend-not"></p>
+      </section>
+
+      <div class="bake-length">
+        <label for="dakika">Pişirme süresi</label>
+        <input type="number" id="dakika" min="0" max="20" value="2" aria-label="Pişirme dakikası">
+        <span>dk</span>
+        <input type="number" id="saniye" min="0" max="59" value="0" aria-label="Pişirme saniyesi">
+        <span>sn</span>
+        <small>10 sn – 20 dk</small>
+      </div>
+
+      <div class="timeline">
+        <button id="oynat" aria-label="Pişirmeyi oynat">▶</button>
+        <output id="saat">0:00</output>
+        <input type="range" id="zaman" aria-label="Pişirme zaman çizelgesi" min="0" max="120" value="0" step="0.1">
+        <span id="sure">2:00</span>
+        <select id="hiz" aria-label="Oynatma hızı">
+          <option value="1">1×</option><option value="5">5×</option>
+          <option value="10" selected>10×</option><option value="25">25×</option>
+          <option value="50">50×</option><option value="100">100×</option>
+        </select>
+      </div>
+
+      <div class="milestones"><span>HAMUR</span><span>BUHAR</span><span>HARÇ PİŞER</span><span>KENAR KIZARIR</span></div>
+
+      <div class="metrics">
+        <div class="hero"><label>Katlanabilirlik</label><strong id="katlanabilirlik">—</strong><small id="katlama-not">RULO YAPILABİLİR Mİ?</small></div>
+        <div><label>Harç iç sıcaklığı</label><strong id="harc-ic">—</strong><small>EN SOĞUK NOKTA</small></div>
+        <div><label>Su kaybı</label><strong id="su-kaybi">—</strong><small>HAMUR + HARÇ KÜTLESİNİN</small></div>
+        <div><label>Yüzey kızarması</label><strong id="kizarma">—</strong><small>MODEL İLERLEMESİ</small></div>
+      </div>
+
+      <div class="char-status">
+        <strong>Yanma şiddeti</strong>
+        <span><span>Üst</span> <output id="yanma-ust">%0</output> · <span>Alt</span> <output id="yanma-alt">%0</output></span>
+        <small>%0 = yok · %100 = kömürleşmiş. Yanan alan değil, ortalama şiddet. Sezgisel bir ölçüdür.</small>
+      </div>
+
+      <div id="harc-durum" class="topping-status"></div>
+
+      <div class="insight">
+        <span>✳</span>
+        <div><div class="eyebrow">İÇERİDE NE OLUYOR?</div><p id="yorum"></p></div>
+      </div>
+
+      <div class="compare-bar">
+        <div><strong>Bir değişiklik. Başka bir lahmacun.</strong><p>Bu pişirmeyi sabitleyin, sonra tek bir değişken değiştirin.</p></div>
+        <button id="catalla" class="outline">+ Bu pişirmeyi çatalla</button>
+      </div>
+      <div id="karsilastirma" hidden></div>
+    </section>
+  </div>
+
+  <section class="below">
+    <div><span class="eyebrow">ON BİR USUL. SIFIR KUTSAL İNEK.</span><h2>Bir iddiayla kavga et.</h2></div>
+    <div class="challenge-buttons">
+      <button data-challenge="harc">“Daha çok harç, daha lezzetli.” <span>Harcı test et ↗</span></button>
+      <button data-challenge="isi">“Fırını iyice kızdır.” <span>Isı dengesini test et ↗</span></button>
+      <button data-challenge="ev">“Ev fırınında da olur.” <span>Ev fırınını test et ↗</span></button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <span>LAHMACUN LAB <i>Meraklısı için yapıldı.</i></span>
+  <a id="geribildirim" href="https://github.com/CankatSarac/lahmacun-lab/issues/new" target="_blank" rel="noopener">Gerçek bir pişirme bildir ↗</a>
+  <span>Fizik temelli. Mutfakta doğrulanmamış.</span>
+</footer>
+
+<dialog id="modal"><button class="close" aria-label="Pencereyi kapat">×</button><div id="modal-icerik"></div></dialog>
+<div id="toast" role="status"></div>
+<script type="module" src="app.js"></script>
+</body>
+</html>

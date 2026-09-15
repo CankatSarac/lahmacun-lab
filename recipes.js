@@ -23,7 +23,7 @@ const R = [
 
 ['Adana Lahmacunu', 'ADANA', 'İnce, acı, hızlı.',
  'En ince hamur ve en kısa pişirme. Hata payı burada en dardır.',
- 55, 11, 3, 1.8, 30, 1, 2.5, 72, 90, 18, 440, 325, 110, 'tas', 'tas'],
+ 55, 11, 3, 1.8, 30, 1, 2.5, 72, 90, 18, 440, 320, 100, 'tas', 'tas'],
 
 ['Hatay Lahmacunu', 'HATAY', 'Nar ekşisi ve zeytinyağı.',
  'Daha yaş bir harç. Fazla su, hamurun kurumasını geciktirir; iyi ya da kötü.',
@@ -39,11 +39,11 @@ const R = [
 
 ['Konya Etli Ekmek', 'KONYA', 'Derinlik her şeyi değiştirir.',
  'Kalın hamur, uzun pişirme. Aslında ovaldir; buradaki kesit ondan bir şerit sayılır.',
- 60, 12, 8, 5, 38, 2, 5, 66, 88, 24, 330, 300, 330, 'tas', 'tas'],
+ 60, 12, 8, 5, 38, 2, 5, 66, 88, 24, 330, 280, 300, 'tas', 'tas'],
 
 ['Sac Lahmacun', 'KIRSAL · SAC', 'Üstten ısı yok.',
  'Tamamen taban işi. Sac metaldir: teması taştan çok daha sıkı, üstten ışıma neredeyse sıfır.',
- 54, 10.5, 2, 1.5, 28, 1, 2.5, 70, 88, 18, 300, 330, 200, 'sac', 'sac'],
+ 54, 10.5, 2, 1.5, 28, 1, 2.5, 70, 88, 18, 280, 295, 150, 'sac', 'sac'],
 
 ['Ev Fırını Lahmacunu', 'EV MUTFAĞI', 'Ders burada başlıyor.',
  '270 °C ve sekiz dakika. Kızarma gelmeden su biter. Katlanabilirliği izleyin.',
