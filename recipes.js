@@ -92,7 +92,7 @@ export const challenges = {
     ders: 'Harç kalınlığını 3 mm’den 7 mm’ye çıkardık. Harcın iç sıcaklığına ve hamurun ıslaklığına bakın: kalın harç kendi suyunu hamura verir ve merkezi soğuk tutar.' },
   isi: { recipe: 0, over: { ust: 520, taban: 480, sure: 120 },
     iddia: '"Fırını iyice kızdır, bir dakikada çıksın."',
-    ders: 'Üst ısıyı 520 °C’ye çıkardık. Çıplak kenar kömürleşirken harcın merkezi hâlâ yetişmiyor. Isı bir hızlandırıcı değil, bir dengedir.' },
+    ders: 'Üst ısıyı 520 °C, tabanı 480 °C yaptık. Harç yine pişiyor — sorun o değildi. Taban %100 kömürleşiyor, çıplak kenar tamamen kararıyor, yüzey kızarması tavan yapıyor ve katlanabilirlik %73’ten %31’e düşüyor. Isı bir hızlandırıcı değil, bir dengedir: kazandığınız süreyi tabandan ödersiniz.' },
   ev: { recipe: 9, over: {},
     iddia: '"Ev fırınında da olur."',
     ders: '270 °C’de sekiz dakika. Su kaybı yüksek, kızarma düşük: lahmacun pişmez, kurur. Katlanabilirliğin nasıl çöktüğüne bakın.' },

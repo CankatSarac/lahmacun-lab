@@ -7,7 +7,7 @@ import { drawSection } from './render.js';
 import { attachCamera } from './camera.js';
 import {
   SUMMARY, S_FOLD, S_MEATCORE, S_WATERLOSS, S_BROWN, S_DONE, S_THICK,
-  S_CHARTOP, S_CHARBASE, S_TOPWATER, S_DOUGHCORE, S_SURFTEMP, S_BASETEMP, S_RISE, S_SOGGY,
+  S_CHARTOP, S_CHARBASE, S_TOPWATER, S_DOUGHCORE, S_SURFTEMP, S_BASETEMP, S_RISE, S_SOGGY, S_EDGECHAR,
 } from './physics.js';
 
 const $ = (s) => document.querySelector(s);
@@ -148,6 +148,7 @@ function paint() {
   $('#kizarma').textContent = pct(g(S_BROWN));
   $('#yanma-ust').textContent = pct(g(S_CHARTOP));
   $('#yanma-alt').textContent = pct(g(S_CHARBASE));
+  $('#yanma-kenar').textContent = p.kaplama < 100 ? pct(g(S_EDGECHAR)) : '—';
 
   $('#harc-durum').textContent = p.harc > 0 && p.kaplama > 0
     ? `Harç suyunun %${Math.round(g(S_TOPWATER) * 100)}’i duruyor · harç pişme ${pct(g(S_DONE))} · toplam kalınlık ${g(S_THICK).toFixed(1)} mm · taban ${Math.round(g(S_BASETEMP))} °C · yüzey ${Math.round(g(S_SURFTEMP))} °C`
@@ -168,6 +169,9 @@ function yorum(a, g) {
       ? `Harç kendi suyunu ve kendi ısı kütlesini taşıyor: ${p.harc} mm kalınlıkta, ağırlıkça %${p.harcSu} su. Hamurun üstündeki ıslak battaniye hem koruyor hem ıslatıyor. `
       : 'Çıplak hamur: fırın ısısı doğrudan yüzeye çarpıyor, emecek hiçbir su yok. ')
       + `Çıplak kenar üç yüzeyden birden ısınıyor; orada her zaman ilk yanan yer orasıdır.`;
+  }
+  if (p.kaplama < 99 && g(S_EDGECHAR) > 0.85 && char < 0.5) {
+    return `Çıplak kenar %${Math.round(g(S_EDGECHAR) * 100)} kömürleşti, oysa üst yüzey daha ${pct(g(S_CHARTOP))}. Harçsız kenar üç yüzeyden birden ısınır ve arkasında ısıyı emecek su yoktur: her zaman ilk orası gider. Kaplamayı artırın ya da ısıyı düşürün.`;
   }
   if (char > 0.6) return `Kömürleşme ilerledi (üst ${pct(g(S_CHARTOP))}, alt ${pct(g(S_CHARBASE))}). Kurumuş bölgeler artık yanıyor. Yanma, yanan alanı değil ortalama şiddeti gösteren, kalibre edilmemiş bir göstergedir.`;
   if (fold < 0.2) return `Katlanabilirlik ${pct(fold)}. Hamurun suyu bitti; matris camsılaştı. Bu lahmacun artık rulo yapılırken kırılır. Su kaybı %${g(S_WATERLOSS).toFixed(1)}.`;
